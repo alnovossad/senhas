@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Senha Segura</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senha Forte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Gerador de Senha Segura</h1>
-    <div class="input-box">
-      <input type="text" id="password" readonly>
-      <button id="copyBtn">Copiar</button>
+    <div class="container">
+        <h1>Gerador de Senha Forte</h1>
+
+        <div class="options">
+            <label>
+                <input type="checkbox" id="upper-case"> Incluir letras maiúsculas
+            </label>
+            <label>
+                <input type="checkbox" id="lower-case"> Incluir letras minúsculas
+            </label>
+            <label>
+                <input type="checkbox" id="symbols"> Incluir símbolos
+            </label>
+        </div>
+
+        <div class="settings">
+            <label for="length">Comprimento da senha:</label>
+            <input type="number" id="length" value="12" min="6" max="20">
+        </div>
+
+        <button id="generate">Gerar Senha</button>
+
+        <div class="password-output">
+            <label for="password">Sua Senha:</label>
+            <input type="text" id="password" readonly>
+        </div>
     </div>
-    <div class="settings">
-      <label for="length">número de caracteres:</label>
-      <input type="number" id="length" min="8" max="128" value="16">
-      <div class="options">
-        <label><input type="checkbox" id="uppercase"> Maiúsculas</label>
-        <label><input type="checkbox" id="lowercase" checked> Minúsculas</label>
-        <label><input type="checkbox" id="numbers" checked> Números</label>
-        <label><input type="checkbox" id="symbols" checked> Símbolos</label>
-      </div>
-      <button id="generateBtn">Gerar Senha</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
