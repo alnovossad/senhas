@@ -1,158 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+document.getElementById("generate-btn").addEventListener("click", function() {
+    const length = parseInt(document.getElementById("password-length").value);
+    const useUppercase = document.getElementById("include-uppercase").checked;
+    const useNumbers = document.getElementById("include-numbers").checked;
+    const useSymbols = document.getElementById("include-symbols").checked;
 
-:root {
-    --branco: white;
-    --cor-de-fundo: #00162E;
-    --fundo-senha: #00244D;
-    --fundo-texto: #001E40;
-    --borda: #0075FF;
-    --roboto: 'Roboto', sans-serif;
-    --roboto-mono: 'Roboto Mono', monospace;
-}
+    const password = generatePassword(length, useUppercase, useNumbers, useSymbols);
+    document.getElementById("generated-password").value = password;
+});
 
-* {
-    font-weight: 400;
-}
+function generatePassword(length, useUppercase, useNumbers, useSymbols) {
+    const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+    const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()-_=+[]{}|;:,.<>?/";
 
-body {
-    color: var(--branco);
-    background-color: var(--cor-de-fundo);
-    font-family: var(--roboto);
-}
+    let characters = lowerCaseLetters;
 
-.titulo-principal {
-    font-family: var(--roboto-mono);
-    font-size: 32px;
-}
+    if (useUppercase) characters += upperCaseLetters;
+    if (useNumbers) characters += numbers;
+    if (useSymbols) characters += symbols;
 
-.titulo-secundario {
-    font-size: 24px;
-}
-
-.conteudo-titulo {
-    text-align: center;
-    margin-top: 80px;
-}
-
-.conteudo-senha {
-    margin-top: 80px;
-    background: var(--fundo-senha);
-    padding: 24px;
-    border-bottom: 6px solid var(--borda);
-}
-
-#campo-senha {
-    background-color: var(--fundo-senha);
-    border: none;
-    color: var(--branco);
-    font-family: var(--roboto-mono);
-    font-size: 40px;
-    width: 70%;
-}
-
-#campo-senha:focus {
-    outline: none;
-}
-
-.conteudo {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.parametro {
-    background-color: var(--fundo-texto);
-    border: 2px solid var(--borda);
-    margin-top: 32px;
-    padding: 24px;
-}
-
-.parametro-titulo {
-    font-family: var(--roboto-mono);
-    font-size: 28px;
-}
-
-.parametro-senha__titulo {
-    font-size: 24px;
-}
-
-.parametro-coluna__senha {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.parametro-senha {
-    width: 50%;
-    margin: 0 auto;
-}
-
-.parametro-senha-botoes {
-    display: flex;
-    justify-content: center;
-}
-
-.parametro-senha__botao {
-    background-color: var(--fundo-texto);
-    color: var(--branco);
-    border: 2px solid var(--borda);
-    padding: 24px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.parametro-senha__texto {
-    padding: 24px;
-    border-top: 2px solid var(--borda);
-    border-bottom: 2px solid var(--borda);
-    margin: 0;
-    font-size: 24px;
-}
-
-label {
-    font-size: 20px;
-}
-
-.checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.barra {
-    background-color: var(--fundo-senha);
-    height: 30px;
-    width: 100%;
-}
-
-.forca {
-    height: 30px;
-    position: relative;
-    bottom: 30px;
-}
-
-.fraca {
-    width: 25%;
-    background-color: #E71B32;
-}
-
-.media {
-    background-color: #FAF408;
-    width: 50%;
-}
-
-.forte {
-    background-color: #00FF85;
-    width: 100%;
-}
-
-.parametro-senha-textos {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-@media screen and (min-width: 768px) {
-    .parametro-coluna__senha {
-        flex-direction: row;
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
     }
+
+    return password;
 }
